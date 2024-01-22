@@ -1,0 +1,5 @@
+export const PRODUCT_COLUMNS: string[] = ['name', 'category', 'date', 'productCondition', 'price', 'comment', 'actions'];
+
+export const PRODUCT_FIELDS: string[] = ['name', 'category', 'date', 'productCondition', 'price', 'comment'];
+
+export const PRODUCT_CONDITION_LIST: string[] = ['New', 'Used', 'After renovation'];

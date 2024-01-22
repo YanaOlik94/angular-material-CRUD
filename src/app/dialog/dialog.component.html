@@ -1,0 +1,67 @@
+<h1 mat-dialog-title>
+  {{data ? 'Edit' : 'Add'}} product </h1>
+
+<div class="mat-dialog-content" mat-dialog-content>
+
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline" class="example-full-width">
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput placeholder="Enter name of product">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Product category</mat-label>
+      <mat-select formControlName="category" placeholder="Enter product category">
+        <mat-option [value]="'Мониторы'">Monitors</mat-option>
+        <mat-option [value]="'Ноутбуки'">Laptops</mat-option>
+        <mat-option [value]="'Планшеты'">Tablets</mat-option>
+        <mat-option [value]="'Акустика'">Acoustics</mat-option>
+        <mat-option [value]="'Смартфоны'">Smartphones</mat-option>
+        <mat-option [value]="'Оргтехника'">Office equipment</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Select date</mat-label>
+      <input [matDatepicker]="picker" formControlName="date" matInput>
+      <mat-datepicker-toggle [for]="picker" matIconSuffix></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <label id="example-radio-group-label">
+      <h2>Product Condition</h2>
+    </label>
+    <mat-radio-group aria-labelledby="example-radio-group-label"
+                     class="example-radio-group" formControlName="productCondition">
+      <mat-radio-button *ngFor="let el of productConditionList"
+                        [value]="el"
+                        class="example-radio-button">
+        {{el}}
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Price, $</mat-label>
+      <input formControlName="price" matInput placeholder="Product proce..." type="number">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Comment</mat-label>
+      <textarea cdkAutosizeMaxRows="5"
+                cdkAutosizeMinRows="1"
+                cdkTextareaAutosize
+                formControlName="comment"
+                matInput>
+    </textarea>
+    </mat-form-field>
+
+  </form>
+</div>
+
+<div [align]="'end'" matDialogActions>
+  <button mat-dialog-close mat-raised-button>Отменить</button>
+  <button (click)="data ? updateProduct() : addProduct()" [disabled]="form.invalid" color="accent"
+          mat-raised-button>{{actionBtn}}
+  </button>
+</div>
+
